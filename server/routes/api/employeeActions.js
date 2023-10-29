@@ -5,10 +5,10 @@ const authentication = require('../../middleware/authentication')
 
 router.post("/in", authentication, async (req, res) => {
   try {
+    const name = req.body.firstName+' '+req.body.lastName
     const empObj = {
         id: req.body.id,
-        firstName:req.body.firstName,
-        lastName: req.body.lastName,
+        fullName:name,
         age: req.body.age,
         position: req.body.position,
         email: req.body.email,
@@ -29,7 +29,7 @@ router.post("/in", authentication, async (req, res) => {
 });
 router.get("/getspecificempinfo", authentication,async (req, res) => {
   try {
-    const employees = await Employee.find().select('firstName lastName age position');
+    const employees = await Employee.find().select('fullName age position');
     res.status(200).json(employees);
   } catch (err) {
     catchFunction();
@@ -47,6 +47,7 @@ router.get("/getallempinfo", authentication , async (req, res) => {
   router.put("/update/:id", authentication, async (req, res) => {
     try {
       const id = req.params.id;
+      req.body.fullName = req.body.firstName+' '+req.body.lastName
       const body = req.body;
       const user = await Employee.findByIdAndUpdate(id, body, { new: true });
   
@@ -74,6 +75,48 @@ router.get("/getallempinfo", authentication , async (req, res) => {
       catchFunction(error, res);
     }
   });
+
+  router.get('/positionsearch', async(req,res)=>{
+    try {
+      const pos = req.body.position
+      const user = await Employee.find({position:pos}).select('fullName age position')
+      if(!user){
+        res.json({message: 'employee not found'})
+      }else{
+        res.json(user)
+      }
+    } catch (error) {
+      catchFunction(error, res)
+    }
+  })
+
+  router.get('/namesearch', async(req,res)=>{
+    try {
+      const name = req.body.name
+      const user = await Employee.find({firstName:name}).select('fullName age position')
+      if(!user){
+        res.json({message: 'employee not found'})
+      }else{
+        res.json(user)
+      }
+    } catch (error) {
+      catchFunction(error, res)
+    }
+  })
+
+  router.get('/deptsearch', async(req,res)=>{
+    try {
+      const dept = req.body.department
+      const user = await Employee.find({department:dept}).select('fullName age position')
+      if(!user){
+        res.json({message: 'employee not found'})
+      }else{
+        res.json(user)
+      }
+    } catch (error) {
+      catchFunction(error, res)
+    }
+  })
 
 
 module.exports = router;
