@@ -76,7 +76,7 @@ router.get("/getallempinfo", authentication , async (req, res) => {
     }
   });
 
-  router.get('/positionsearch', async(req,res)=>{
+  router.get('/positionsearch', authentication,async(req,res)=>{
     try {
       const pos = req.body.position
       const user = await Employee.find({position:pos}).select('fullName age position')
@@ -90,7 +90,7 @@ router.get("/getallempinfo", authentication , async (req, res) => {
     }
   })
 
-  router.get('/namesearch', async(req,res)=>{
+  router.get('/namesearch', authentication, async(req,res)=>{
     try {
       const name = req.body.name
       const user = await Employee.find({firstName:name}).select('fullName age position')
@@ -104,7 +104,7 @@ router.get("/getallempinfo", authentication , async (req, res) => {
     }
   })
 
-  router.get('/deptsearch', async(req,res)=>{
+  router.get('/deptsearch', authentication ,async(req,res)=>{
     try {
       const dept = req.body.department
       const user = await Employee.find({department:dept}).select('fullName age position')
@@ -117,6 +117,34 @@ router.get("/getallempinfo", authentication , async (req, res) => {
       catchFunction(error, res)
     }
   })
+
+  router.get('/numberofemployee', authentication, async (req,res)=>{
+    try {
+      const totalEmployee = await Employee.countDocuments()
+      res.status(200).json({totalEmployee})
+    } catch (error) {
+      catchFunction(error, res)
+    }
+  })
+
+  router.get('/average-age',authentication, async (req, res) => {
+    try {
+        const employees = await Employee.find({});
+        
+        if (employees.length === 0) {
+            return res.json({ averageAge: 0 });
+        }
+
+        const totalAge = employees.reduce((total, employee) => total + employee.age, 0);
+        const averageAge = totalAge / employees.length;
+
+        res.json({ averageAge });
+    } catch (error) {
+        catchFunction(error,res)
+    }
+});
+
+
 
 
 module.exports = router;

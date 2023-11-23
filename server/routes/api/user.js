@@ -24,8 +24,8 @@ router.post("/registration",
     const hash = await bcrypt.hash(req.body.password, salt);
     const password = hash;
     const userObj = {
-      first_Name: req.body.first_Name,
-      last_Name: req.body.last_Name,
+      firstName:req.body.first_Name,
+      lastName:req.body.last_Name,
       email: req.body.email,
       password: password,
       
