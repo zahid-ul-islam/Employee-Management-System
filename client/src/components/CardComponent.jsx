@@ -67,23 +67,19 @@ const CardComponent = (props) => {
         resetModal={resetErrorModal}
       />
       <Grid container sx={{ m: props.margin,
-      display:'flex', justifyContent:'center', bgcolor:'	#A52A2A'}}>
-        <Grid container item xs={props.breakpoint} sx={{ bgcolor: '#FF0000', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1)' }}>
+      display:'flex', justifyContent:'center', bgcolor:'orange'}}>
+        <Grid container item xs={props.breakpoint} sx={{ bgcolor: 'orange', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1)' }}>
           <Grid container >
-            <Grid item xs={4} sx={{ m: props.spacing }}>
-              <Item >
-                <CircularProgressbar value={percentage} text={`${percentage}%`}></CircularProgressbar>
-              </Item>
-            </Grid>
-            <Grid item xs={7} sx={{ m: props.spacing, display: 'flex', justifyContent: 'right' }}>
-              <Box component='div' sx={{display:'flex', flexDirection:'column', alignItems:'end', gap:3 }}>
-                <Typography variant='h5' sx={{border:'2px solid black', color:'white !important', padding:'4px'}}>
+           
+            <Grid item xs={7} sx={{ m: props.spacing }}>
+              <Box component='div' sx={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:3 }}>
+                <Typography variant='h5' sx={{ color:'white !important', padding:'4px'}}>
                   Average salary: {avgSalary}
                 </Typography>
-                <Typography variant='h5' sx={{border:'2px solid black', color:'white !important', padding:'4px'}}>
+                <Typography variant='h5' sx={{color:'white !important', padding:'4px'}}>
                   Total Employee: {totalEmployees}
                 </Typography>
-                <Typography variant='h5' sx={{border:'2px solid black', color:'white !important', padding:'4px'}}>
+                <Typography variant='h5' sx={{color:'white !important', padding:'4px'}}>
                   Average Age: {avgAge}
                 </Typography>
               </Box>

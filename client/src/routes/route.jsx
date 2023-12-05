@@ -32,6 +32,9 @@ const AppRoutes = () => {
 				{
 					path: 'profile',
 					element: secureRouteWrapper(<Profile />)
+				},
+				{
+					path:'show-details'
 				}
 			],
 		},

@@ -5,7 +5,6 @@ import { DateTime } from "luxon";
 import ErrorModal from '../components/ErrorModal';
 import ShowDetailDialog from '../components/ShowDetailDialog';
 import UserTable from '../components/UserTable';
-import LatestEmployee from '../components/LatestEmployee';
 import { UserContext } from '../contexts/Contexts';
 import { getUsers, getLatestEmployee } from '../services/userService';
 
@@ -128,7 +127,7 @@ const Employee = () => {
                   open: true,
                   data: params.row,
                 }));
-              }}>Click to see Details</Button>
+              }}>See Details</Button>
             ),
           }]);
         }
@@ -152,8 +151,9 @@ const Employee = () => {
         resetModal={resetModal}
         setChanges={resetChanges}
       />
-      <UserTable rows={rows} columns={columns} />
-      <LatestEmployee rows={latestEmployeeRows} />
+      <UserTable rows={rows} columns={columns} /> 
+     
+      
     </>
   );
 };
