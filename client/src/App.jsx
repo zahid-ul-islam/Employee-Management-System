@@ -1,20 +1,18 @@
-import react from 'react';
-import './App.css'
-import SignUp from "./pages/SignUp.jsx";
-import Box from "@mui/material/Box";
-import SignInSide from "./pages/SignIn.jsx";
-import {RoutesApp} from "./routes/route.jsx";
-
-
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
+import './App.css';
+import AppRoutes from './routes/route';
+import { UserContext } from './contexts/Contexts';
+// import ErrorModal from './components/errorModal';
 
 function App() {
-
-
+  const [user, setUser] = useState({});
   return (
-   <>
-       <RoutesApp />
-   </>
+    <UserContext.Provider value={{user, setUser}}>
+      {/* <ErrorModal title='Registration problem' message='User could not be registered. Please try again.' /> */}
+      <AppRoutes />
+    </UserContext.Provider>
   )
 }
 
-export default App
+export default App;
