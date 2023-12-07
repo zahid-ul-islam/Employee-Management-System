@@ -24,7 +24,7 @@ import { UserContext } from '../contexts/Contexts';
 import { clearTokens } from '../services/authServices';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Employees', 'Profile', 'About'];
+const navItems = ['Home', 'Employees', 'Profile', 'About', 'Career'];
 
 const ToggleButtonGroup = styled(MUIToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {

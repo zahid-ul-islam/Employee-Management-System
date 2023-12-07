@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider, styled } from '@mui/material/styles';
 import Copyright from '../components/Copyright';
 import theme from '../themes/themes';
+// import SessionTimeout from '../components/SessionTimeout';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -20,6 +21,7 @@ const About = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      {/* <SessionTimeout /> */}
       <StyledCard>
       <Typography variant='h3' sx={{bgcolor:'orange'}}>About</Typography>
       <Box sx={
